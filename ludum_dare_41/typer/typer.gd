@@ -41,9 +41,9 @@ func _unhandled_input(event):
 
 		word.clear()
 		word.push_color(completed_color)
-		word.add_text(current_word.substr(0, current_char))
+		word.add_text(current_word.substr(0, current_char).to_upper())
 		word.push_color(defualt_color)
-		word.add_text(current_word.substr(current_char, current_word_size))
+		word.add_text(current_word.substr(current_char, current_word_size).to_upper())
 	elif (key_pressed != null):
 		$typing_incorrect.play()
 		emit_signal("invalid_key")
@@ -64,7 +64,7 @@ func set_current_word(new_word):
 	else:
 		current_word_size = new_word.length()
 		word.push_color(defualt_color)
-		word.add_text(new_word)
+		word.add_text(new_word.to_upper())
 
 func set_points(points):
 	$points_text.text = String(points)
