@@ -1,5 +1,7 @@
 extends Control
 
+var typing_sound
+
 var dictionary = preload("res://typer/dictionary.gd")
 
 var background_color = Color(0.183594, 0.024384, 0.024384)
@@ -15,6 +17,7 @@ var word
 func _ready():
 	randomize()
 	word = $word
+	typing_sound = $typing
 	load_next_word()
 
 func _unhandled_input(event):
@@ -28,6 +31,7 @@ func _unhandled_input(event):
 		key_pressed = OS.get_scancode_string(event.scancode).to_lower()
 
 	if (key_pressed == current_word[current_char]):
+		typing_sound.play()
 		current_char += 1
 
 		word.clear()
