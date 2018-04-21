@@ -6,10 +6,14 @@ func _ready():
 	pass
 
 func get_word(letter):
+	var final_word = null
+	var current_x = 10000
 	for word in level_words.keys():
 		if word.begins_with(letter):
-			return word
-	return null
+			if (level_words[word].position.x < current_x):
+				final_word = word
+				current_x = level_words[word].position.x
+	return final_word
 
 func word_complete(word):
 	var points = level_words[word].get_points()
