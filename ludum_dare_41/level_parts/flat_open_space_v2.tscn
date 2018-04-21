@@ -44,7 +44,14 @@ scale = Vector2( 0.65625, 0.65625 )
 texture = ExtResource( 3 )
 _sections_unfolded = [ "Offset" ]
 
-[node name="cover" type="Area2D" parent="." index="2"]
+[node name="player_box2" type="Sprite" parent="." index="2"]
+
+position = Vector2( 199, 82 )
+scale = Vector2( 0.65625, 0.65625 )
+texture = ExtResource( 3 )
+_sections_unfolded = [ "Offset" ]
+
+[node name="cover" type="Area2D" parent="." index="3"]
 
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
@@ -60,12 +67,12 @@ script = ExtResource( 4 )
 position = Vector2( 75, 81 )
 shape = SubResource( 1 )
 
-[node name="cowboy" parent="." index="3" instance=ExtResource( 5 )]
+[node name="cowboy" parent="." index="4" instance=ExtResource( 5 )]
 
 position = Vector2( 143, 74 )
 
-[node name="cowboy2" parent="." index="4" instance=ExtResource( 5 )]
+[node name="cowboy2" parent="." index="5" instance=ExtResource( 5 )]
 
-position = Vector2( 219, 74 )
+position = Vector2( 199.263, 58.1382 )
 
 

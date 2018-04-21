@@ -9903,4 +9903,4 @@ const easy = [
 const easy_word_count = 9901
 
 static func get_easy_word():
-	return easy[rand_range(0, easy_word_count)]
+	return easy[int(rand_range(0, easy_word_count))]

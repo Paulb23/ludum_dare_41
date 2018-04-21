@@ -13,7 +13,7 @@ func get_word(letter):
 
 func word_complete(word):
 	var points = level_words[word].get_points()
-	level_words[word].queue_free()
+	level_words[word].kill()
 	level_words.erase(word)
 	return points
 
