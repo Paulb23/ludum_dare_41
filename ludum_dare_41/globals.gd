@@ -9,6 +9,7 @@ var varibles = {}
 var currernt_scene = null
 
 func _ready():
+	randomize()
 	currernt_scene = get_tree().get_root().get_child(get_tree().get_root().get_child_count() -1)
 	set_screen_res(screen_width, screen_height)
 	set_globals()

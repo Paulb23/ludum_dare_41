@@ -1,10 +1,10 @@
 extends Control
 
+signal request_word
+signal word_complete
+
 var typing_sound
 
-var dictionary = preload("res://typer/dictionary.gd")
-
-var background_color = Color(0.183594, 0.024384, 0.024384)
 var defualt_color = Color(1,1,1)
 var completed_color = Color(0,1,0)
 
@@ -15,13 +15,11 @@ var current_word_size
 var word
 
 func _ready():
-	randomize()
 	word = $word
 	typing_sound = $typing
-	load_next_word()
 
 func _unhandled_input(event):
-	if (!event.is_pressed()):
+	if (!event.is_pressed() || !event is InputEventKey):
 		return
 
 	var key_pressed = null
@@ -29,6 +27,12 @@ func _unhandled_input(event):
 		key_pressed = OS.get_scancode_string(event.scancode)
 	else:
 		key_pressed = OS.get_scancode_string(event.scancode).to_lower()
+
+
+	if (current_word == null && key_pressed != null):
+		emit_signal("request_word", key_pressed)
+		if (current_word == null):
+			return
 
 	if (key_pressed == current_word[current_char]):
 		typing_sound.play()
@@ -41,12 +45,19 @@ func _unhandled_input(event):
 		word.add_text(current_word.substr(current_char, current_word_size))
 
 	if (current_char == current_word_size):
-		load_next_word()
+		emit_signal("word_complete", current_word)
+		current_word = null
+		current_char = 0
+		word.clear()
 
-func load_next_word():
-	current_word = dictionary.get_easy_word()
-	current_word_size = current_word.length()
+func set_current_word(new_word):
+	current_word = new_word
+
 	current_char = 0
 	word.clear()
-	word.push_color(defualt_color)
-	word.add_text(current_word)
+	if (new_word == null):
+		current_word_size = 0
+	else:
+		current_word_size = new_word.length()
+		word.push_color(defualt_color)
+		word.add_text(new_word)
