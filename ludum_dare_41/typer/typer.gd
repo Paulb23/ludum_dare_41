@@ -3,7 +3,7 @@ extends Control
 var dictionary = preload("res://typer/dictionary.gd")
 
 var background_color = Color(0.183594, 0.024384, 0.024384)
-var defualt_color = Color(1,0,0)
+var defualt_color = Color(1,1,1)
 var completed_color = Color(0,1,0)
 
 var current_char
