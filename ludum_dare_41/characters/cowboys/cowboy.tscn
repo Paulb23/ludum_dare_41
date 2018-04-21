@@ -26,6 +26,9 @@ script = ExtResource( 1 )
 [node name="Sprite" type="Sprite" parent="." index="0"]
 
 texture = ExtResource( 2 )
+vframes = 3
+hframes = 4
+_sections_unfolded = [ "Animation", "Transform" ]
 
 [node name="word" type="Label" parent="." index="1"]
 

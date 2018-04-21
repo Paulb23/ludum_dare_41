@@ -14,10 +14,22 @@ func _ready():
 	in_cover = false
 
 func _physics_process(delta):
+	if ($AnimationPlayer.current_animation == "shoot" && $AnimationPlayer.is_playing()):
+		return
+
 	if (!in_cover):
+		if ($AnimationPlayer.current_animation != "walk"):
+			$AnimationPlayer.play("walk")
 		position += Vector2(100, 0) * delta
 		if (position.x > Globals.screen_width):
 			emit_signal("load_next")
+	else:
+		if ($AnimationPlayer.current_animation != "cover"):
+			$AnimationPlayer.play("cover")
+
+func shoot():
+	$AnimationPlayer.play("shoot")
+	$shoot.play()
 
 func _area_entered(other):
 	in_cover = true

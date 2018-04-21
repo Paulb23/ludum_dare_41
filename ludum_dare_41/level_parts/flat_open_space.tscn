@@ -61,6 +61,10 @@ shape = SubResource( 1 )
 
 [node name="cowboy" parent="." index="3" instance=ExtResource( 5 )]
 
-position = Vector2( 187, 59 )
+position = Vector2( 143, 58 )
+
+[node name="cowboy2" parent="." index="4" instance=ExtResource( 5 )]
+
+position = Vector2( 219, 58 )
 
 

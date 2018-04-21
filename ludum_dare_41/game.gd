@@ -67,6 +67,8 @@ func _word_complete(word):
 	typer.set_points(score)
 	typer.set_multiplyer(score_multiplyer)
 
+	player.shoot()
+
 func _cover_completed():
 	cover_complete = true
 

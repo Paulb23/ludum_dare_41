@@ -16,14 +16,14 @@ _sections_unfolded = [ "Pause", "Visibility" ]
 
 [node name="typer" parent="." index="1" instance=ExtResource( 2 )]
 
-margin_left = 65.0
+margin_left = 47.0
 margin_top = 81.0
-margin_right = 65.0
+margin_right = 47.0
 margin_bottom = 81.0
 
 [node name="player" parent="." index="2" instance=ExtResource( 3 )]
 
-position = Vector2( 6.10281, 58.6763 )
+position = Vector2( 6.10281, 57.6763 )
 
 [node name="sfx" parent="." index="3" instance=ExtResource( 4 )]
 
