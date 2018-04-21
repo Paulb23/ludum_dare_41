@@ -12,8 +12,10 @@ func get_word(letter):
 	return null
 
 func word_complete(word):
+	var points = level_words[word].get_points()
 	level_words[word].queue_free()
 	level_words.erase(word)
+	return points
 
 func add_word(new_word, object):
 	if (level_words.has(new_word)):

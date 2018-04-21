@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://typer/typer.gd" type="Script" id=1]
 [ext_resource path="res://ui/type_back.png" type="Texture" id=2]
 [ext_resource path="res://fonts/upheavtt.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://sfx/type.wav" type="AudioStream" id=4]
+[ext_resource path="res://sfx/type_incorrect.wav" type="AudioStream" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 
@@ -13,12 +14,22 @@ use_filter = true
 font_data = ExtResource( 3 )
 _sections_unfolded = [ "Extra Spacing", "Font", "Settings" ]
 
-[node name="typer" type="Control"]
+[sub_resource type="DynamicFont" id=2]
+
+size = 14
+use_mipmaps = true
+use_filter = false
+font_data = ExtResource( 3 )
+_sections_unfolded = [ "Font", "Settings" ]
+
+[node name="typer" type="Control" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = 1.0
+margin_right = 1.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
@@ -45,18 +56,56 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 texture = ExtResource( 2 )
-_sections_unfolded = [ "Axis Stretch", "Margin", "Patch Margin" ]
+_sections_unfolded = [ "Axis Stretch", "Margin", "Patch Margin", "Rect" ]
 
-[node name="word" type="RichTextLabel" parent="." index="1"]
+[node name="points" type="NinePatchRect" parent="." index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 131.0
+margin_top = 13.0
+margin_right = 173.0
+margin_bottom = 30.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Axis Stretch", "Margin", "Patch Margin", "Rect" ]
+
+[node name="multiplyer" type="NinePatchRect" parent="." index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 131.0
+margin_top = 31.0
+margin_right = 173.0
+margin_bottom = 46.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Axis Stretch", "Margin", "Patch Margin", "Rect" ]
+
+[node name="word" type="RichTextLabel" parent="." index="3"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 7.0
-margin_top = 21.0
+margin_top = 20.0
 margin_right = 122.0
-margin_bottom = 41.0
+margin_bottom = 40.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = true
 mouse_filter = 0
@@ -75,14 +124,68 @@ scroll_active = false
 scroll_following = false
 selection_enabled = false
 override_selected_font_color = false
-_sections_unfolded = [ "BBCode", "custom_constants", "custom_fonts" ]
+_sections_unfolded = [ "BBCode", "Margin", "custom_constants", "custom_fonts" ]
 
-[node name="typing" type="AudioStreamPlayer" parent="." index="2"]
+[node name="points_text" type="Label" parent="." index="4"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 134.0
+margin_top = 14.0
+margin_right = 174.0
+margin_bottom = 28.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 2 )
+text = "10000"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_fonts" ]
+
+[node name="multiplyer_text" type="Label" parent="." index="5"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 136.0
+margin_top = 31.0
+margin_right = 176.0
+margin_bottom = 45.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 2 )
+text = "x100"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_fonts" ]
+
+[node name="typing" type="AudioStreamPlayer" parent="." index="6"]
 
 stream = ExtResource( 4 )
 volume_db = -40.0
 autoplay = false
 mix_target = 0
-bus = "Master"
+bus = "Sfx"
+
+[node name="typing_incorrect" type="AudioStreamPlayer" parent="." index="7"]
+
+stream = ExtResource( 5 )
+volume_db = -40.0
+autoplay = false
+mix_target = 0
+bus = "Sfx"
 
 

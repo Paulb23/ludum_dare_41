@@ -1,5 +1,6 @@
 extends Control
 
+signal invalid_key
 signal request_word
 signal word_complete
 
@@ -43,6 +44,9 @@ func _unhandled_input(event):
 		word.add_text(current_word.substr(0, current_char))
 		word.push_color(defualt_color)
 		word.add_text(current_word.substr(current_char, current_word_size))
+	elif (key_pressed != null):
+		$typing_incorrect.play()
+		emit_signal("invalid_key")
 
 	if (current_char == current_word_size):
 		emit_signal("word_complete", current_word)
@@ -61,3 +65,9 @@ func set_current_word(new_word):
 		current_word_size = new_word.length()
 		word.push_color(defualt_color)
 		word.add_text(new_word)
+
+func set_points(points):
+	$points_text.text = String(points)
+
+func set_multiplyer(multiplyer):
+	$multiplyer_text.text = "x"+String(multiplyer)
