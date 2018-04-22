@@ -83,7 +83,7 @@ script = ExtResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="cover" index="0"]
 
-position = Vector2( 75, 81 )
+position = Vector2( 76, 81 )
 shape = SubResource( 1 )
 
 [node name="shoot" type="Area2D" parent="." index="6"]

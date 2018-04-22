@@ -58,7 +58,7 @@ script = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="cover" index="0"]
 
-position = Vector2( 75, 81 )
+position = Vector2( 76, 81 )
 shape = SubResource( 1 )
 
 [node name="shoot" type="Area2D" parent="." index="3"]
@@ -80,13 +80,13 @@ shape = SubResource( 1 )
 [node name="cowboy" parent="." index="4" instance=ExtResource( 6 )]
 
 position = Vector2( 352, 74 )
-shoot_delay = 1
+shoot_delay = 0.5
 
 [node name="cowboy2" parent="." index="5" instance=ExtResource( 6 )]
 
 position = Vector2( 301, 74 )
 _sections_unfolded = [ "Collision", "Transform" ]
-shoot_delay = 1
+shoot_delay = 0.5
 
 [node name="spawn_timer" type="Timer" parent="." index="6"]
 
