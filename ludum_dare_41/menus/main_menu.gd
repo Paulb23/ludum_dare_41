@@ -2,6 +2,7 @@ extends Control
 
 
 func _ready():
+	$menu/endless.grab_focus()
 	$menu/endless.connect("pressed", self, "_endless")
 	$menu/quit.connect("pressed", self, "_quit")
 	$sfx/menu_theme.play()

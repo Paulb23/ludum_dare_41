@@ -168,7 +168,7 @@ expand_margin_bottom = 0.0
 modulate_color = Color( 1, 1, 1, 1 )
 draw_center = true
 
-[node name="Control" type="Control"]
+[node name="Control" type="Control" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -241,6 +241,10 @@ margin_right = 105.0
 margin_bottom = 10.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
+focus_neighbour_top = NodePath("../../vol/music_vol")
+focus_neighbour_bottom = NodePath("../quit")
+focus_next = NodePath("../quit")
+focus_previous = NodePath("../../vol/music_vol")
 focus_mode = 2
 mouse_filter = 0
 mouse_default_cursor_shape = 0
@@ -257,7 +261,7 @@ group = null
 text = "play"
 flat = false
 align = 1
-_sections_unfolded = [ "custom_fonts" ]
+_sections_unfolded = [ "Focus", "custom_fonts" ]
 
 [node name="quit" type="Button" parent="menu" index="1"]
 
@@ -270,6 +274,10 @@ margin_right = 105.0
 margin_bottom = 24.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
+focus_neighbour_top = NodePath("../endless")
+focus_neighbour_bottom = NodePath("../../vol/sfx_vol")
+focus_next = NodePath("../../vol/sfx_vol")
+focus_previous = NodePath("../endless")
 focus_mode = 2
 mouse_filter = 0
 mouse_default_cursor_shape = 0
@@ -286,7 +294,7 @@ group = null
 text = "QUIT"
 flat = false
 align = 1
-_sections_unfolded = [ "custom_fonts", "custom_styles" ]
+_sections_unfolded = [ "Focus", "Hint", "custom_fonts", "custom_styles" ]
 
 [node name="vol" type="VBoxContainer" parent="." index="3"]
 
@@ -340,6 +348,10 @@ margin_right = 95.0
 margin_bottom = 20.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
+focus_neighbour_top = NodePath("../../menu/quit")
+focus_neighbour_bottom = NodePath("../music_vol")
+focus_next = NodePath("../music_vol")
+focus_previous = NodePath("../../menu/quit")
 focus_mode = 2
 mouse_filter = 0
 mouse_default_cursor_shape = 0
@@ -360,7 +372,7 @@ editable = true
 tick_count = 0
 ticks_on_borders = false
 focus_mode = 2
-_sections_unfolded = [ "Margin", "custom_icons", "custom_styles" ]
+_sections_unfolded = [ "Focus", "Margin", "custom_icons", "custom_styles" ]
 
 [node name="music" type="Label" parent="vol" index="2"]
 
@@ -397,6 +409,10 @@ margin_right = 95.0
 margin_bottom = 44.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
+focus_neighbour_top = NodePath("../sfx_vol")
+focus_neighbour_bottom = NodePath("../../menu/endless")
+focus_next = NodePath("../../menu/endless")
+focus_previous = NodePath("../sfx_vol")
 focus_mode = 2
 mouse_filter = 0
 mouse_default_cursor_shape = 0
@@ -417,7 +433,7 @@ editable = true
 tick_count = 0
 ticks_on_borders = false
 focus_mode = 2
-_sections_unfolded = [ "Margin", "custom_icons", "custom_styles" ]
+_sections_unfolded = [ "Focus", "Margin", "custom_icons", "custom_styles" ]
 
 [node name="misc" type="Label" parent="." index="4"]
 

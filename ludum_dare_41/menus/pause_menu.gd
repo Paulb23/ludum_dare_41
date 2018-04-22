@@ -3,6 +3,7 @@ extends Control
 
 func _ready():
 	rect_position = Vector2(-1000, -1000)
+	$menu/continue.grab_focus()
 	$menu/continue.connect("pressed", self, "_continue")
 	$menu/menu.connect("pressed", self, "_menu")
 	$menu/quit.connect("pressed", self, "_quit")
