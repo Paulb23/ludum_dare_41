@@ -8,6 +8,9 @@ var life = 3
 var area_detector
 var shader
 
+var dead = false
+
+signal killed
 signal hit
 signal reached_cover
 var in_cover
@@ -26,6 +29,8 @@ func _ready():
 	shader.set_shader_param("fade",false)
 
 func _physics_process(delta):
+	if (dead):
+		return
 	if ($AnimationPlayer.current_animation == "shoot" && $AnimationPlayer.is_playing()):
 		return
 
@@ -79,3 +84,10 @@ func play_sound(sound):
 	$sound_timer.start()
 	yield($sound_timer, "timeout")
 	sound.play()
+
+func kill():
+	dead = true
+	$death.play()
+	$AnimationPlayer.play("death")
+	yield($AnimationPlayer, "animation_finished")
+	emit_signal("killed")

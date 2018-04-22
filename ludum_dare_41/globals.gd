@@ -28,6 +28,9 @@ func set_globals():
 	Globals.set("SCREEN_WIDTH", screen_width)
 	Globals.set("SCREEN_HEIGHT", screen_height)
 	Globals.set("TILE_SIZE", tile_size)
+	Globals.set("points", 0)
+	Globals.set("acc", 0)
+	Globals.set("words", 0)
 
 func set(name, value):
 	varibles[name] = value

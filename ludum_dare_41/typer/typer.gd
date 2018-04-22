@@ -1,5 +1,6 @@
 extends Control
 
+signal valid_key
 signal invalid_key
 signal request_word
 signal word_complete
@@ -14,12 +15,16 @@ var current_word
 var current_word_size
 
 var word
+var running = true
 
 func _ready():
 	word = $word
 	typing_sound = $typing
 
 func _unhandled_input(event):
+	if (!running):
+		return
+
 	if (!event.is_pressed() || !event is InputEventKey || event.scancode == KEY_ESCAPE):
 		return
 
@@ -44,6 +49,7 @@ func _unhandled_input(event):
 		word.add_text(current_word.substr(0, current_char).to_upper())
 		word.push_color(defualt_color)
 		word.add_text(current_word.substr(current_char, current_word_size).to_upper())
+		emit_signal("valid_key")
 	elif (key_pressed != null):
 		$typing_incorrect.play()
 		emit_signal("invalid_key")
