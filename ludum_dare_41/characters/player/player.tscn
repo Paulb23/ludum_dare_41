@@ -182,7 +182,7 @@ autostart = false
 [node name="miss" type="AudioStreamPlayer" parent="." index="6"]
 
 stream = ExtResource( 3 )
-volume_db = -20.0
+volume_db = -40.0
 autoplay = false
 mix_target = 0
 bus = "Sfx"
