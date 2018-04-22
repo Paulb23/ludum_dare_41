@@ -3,6 +3,7 @@ extends Control
 var running = true
 
 func _ready():
+	hide()
 	rect_position = Vector2(-1000, -1000)
 	$menu/continue.grab_focus()
 	$menu/continue.connect("pressed", self, "_continue")
@@ -29,8 +30,10 @@ func _unhandled_input(event):
 		return
 
 	if (get_tree().paused):
+		hide()
 		_continue()
 	else:
+		show()
 		$sfx/menu_click.play()
 		rect_position = Vector2(0, 0)
 		get_tree().paused = true
