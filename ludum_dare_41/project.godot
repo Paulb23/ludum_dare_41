@@ -11,7 +11,7 @@ config_version=3
 [application]
 
 config/name="ludum_dare_41"
-run/main_scene="res://endless_mode.tscn"
+run/main_scene="res://menus/main_menu.tscn"
 config/icon="res://icon.png"
 
 [autoload]

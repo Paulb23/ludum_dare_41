@@ -34,6 +34,8 @@ func _ready():
 	typer.set_points(score)
 	typer.set_multiplyer(score_multiplyer)
 
+	$sfx/game_theme.play()
+
 func _physics_process(delta):
 	if cover_complete:
 		player_cover.position = Vector2(-100,-100)
