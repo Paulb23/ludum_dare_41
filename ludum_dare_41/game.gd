@@ -44,6 +44,7 @@ func _player_reached_cover(other):
 	cover_complete = false
 	player_cover = other
 	player_cover.connect("cover_completed", self, "_cover_completed");
+	get_tree().call_group("bandits", "start")
 
 func _request_word(letter):
 	if (!player_cover):

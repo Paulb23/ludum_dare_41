@@ -10,3 +10,6 @@ func word_complete(word):
 	if (get_parent().level_words.size() <= 0):
 		emit_signal("cover_completed")
 	return points
+
+func is_player_cover():
+	return true

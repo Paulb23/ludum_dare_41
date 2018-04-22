@@ -32,6 +32,8 @@ func shoot():
 	$shoot.play()
 
 func _area_entered(other):
+	if (!other.has_method("is_player_cover") || !other.is_player_cover()):
+		return
 	in_cover = true
 	emit_signal("reached_cover", other)
 

@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://level_parts/flat_open_space.gd" type="Script" id=1]
 [ext_resource path="res://tiles.tres" type="TileSet" id=2]
 [ext_resource path="res://objects/box.png" type="Texture" id=3]
 [ext_resource path="res://level_parts/player_cover.gd" type="Script" id=4]
-[ext_resource path="res://characters/cowboys/cowboy.tscn" type="PackedScene" id=5]
+[ext_resource path="res://level_parts/bandit_shoot.gd" type="Script" id=5]
+[ext_resource path="res://characters/cowboys/cowboy.tscn" type="PackedScene" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -60,12 +61,28 @@ script = ExtResource( 4 )
 position = Vector2( 75, 81 )
 shape = SubResource( 1 )
 
-[node name="cowboy" parent="." index="3" instance=ExtResource( 5 )]
+[node name="shoot" type="Area2D" parent="." index="3"]
 
-position = Vector2( 143, 74 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+script = ExtResource( 5 )
 
-[node name="cowboy2" parent="." index="4" instance=ExtResource( 5 )]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="shoot" index="0"]
 
-position = Vector2( 219, 74 )
+position = Vector2( 91, 81 )
+shape = SubResource( 1 )
+
+[node name="cowboy" parent="." index="4" instance=ExtResource( 6 )]
+
+position = Vector2( 352, 74 )
+
+[node name="cowboy2" parent="." index="5" instance=ExtResource( 6 )]
+
+position = Vector2( 301, 74 )
 
 
