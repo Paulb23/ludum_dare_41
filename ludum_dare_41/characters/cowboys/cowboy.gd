@@ -4,7 +4,7 @@ var dictionary = preload("res://typer/dictionary.gd")
 
 export var points = 10
 export var can_move = true
-export var shoot_delay = 2
+export var shoot_delay = 0.5
 export var chance_to_hit = 30
 
 var can_start = false
@@ -54,7 +54,7 @@ func _physics_process(delta):
 	if (!in_shoot):
 		if ($AnimationPlayer.current_animation != "walk"):
 			$AnimationPlayer.play("walk")
-		position -= Vector2(50, 0) * delta
+		position -= Vector2(75, 0) * delta
 	else:
 		if ($AnimationPlayer.current_animation != "idle_gun"):
 			$AnimationPlayer.play("idle_gun")

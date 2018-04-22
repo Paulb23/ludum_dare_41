@@ -3,21 +3,17 @@
 [ext_resource path="res://level_parts/flat_open_space.gd" type="Script" id=1]
 [ext_resource path="res://tiles.tres" type="TileSet" id=2]
 [ext_resource path="res://objects/box.png" type="Texture" id=3]
-[ext_resource path="res://level_parts/player_cover.gd" type="Script" id=4]
-[ext_resource path="res://level_parts/bandit_shoot.gd" type="Script" id=5]
-[ext_resource path="res://characters/cowboys/cowboy.tscn" type="PackedScene" id=6]
+[ext_resource path="res://objects/cactus.png" type="Texture" id=4]
+[ext_resource path="res://level_parts/player_cover.gd" type="Script" id=5]
+[ext_resource path="res://level_parts/bandit_shoot.gd" type="Script" id=6]
+[ext_resource path="res://characters/cowboys/cowboy.tscn" type="PackedScene" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
 extents = Vector2( 1, 2 )
 
-[sub_resource type="RectangleShape2D" id=2]
-
-custom_solver_bias = 0.0
-extents = Vector2( 2, 2 )
-
-[node name="flat_open_space" type="Node2D"]
+[node name="flat_open_space" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 
@@ -41,7 +37,7 @@ collision_mask = 1
 occluder_light_mask = 1
 format = 1
 tile_data = PoolIntArray( 262144, 0, 0, 262145, 0, 0, 262146, 0, 0, 262147, 0, 0, 262148, 0, 0, 262149, 0, 0, 262150, 0, 0, 262151, 0, 0, 262152, 0, 0, 262153, 0, 0, 262154, 0, 0, 262155, 0, 0, 262156, 0, 0, 262157, 0, 0, 262158, 0, 0, 262159, 0, 0, 327680, 1, 0, 327681, 4, 0, 327682, 1, 0, 327683, 4, 0, 327684, 1, 0, 327685, 4, 0, 327686, 1, 0, 327687, 4, 0, 327688, 1, 0, 327689, 4, 0, 327690, 1, 0, 327691, 4, 0, 327692, 1, 0, 327693, 4, 0, 327694, 1, 0, 327695, 4, 0, 393216, 8, 0, 393217, 10, 0, 393218, 8, 0, 393219, 10, 0, 393220, 8, 0, 393221, 10, 0, 393222, 8, 0, 393223, 10, 0, 393224, 8, 0, 393225, 10, 0, 393226, 8, 0, 393227, 10, 0, 393228, 8, 0, 393229, 10, 0, 393230, 8, 0, 393231, 10, 0, 458752, 1, 0, 458753, 4, 0, 458754, 1, 0, 458755, 4, 0, 458756, 1, 0, 458757, 4, 0, 458758, 1, 0, 458759, 4, 0, 458760, 1, 0, 458761, 4, 0, 458762, 1, 0, 458763, 4, 0, 458764, 1, 0, 458765, 4, 0, 458766, 1, 0, 458767, 4, 0, 524288, 8, 0, 524289, 10, 0, 524290, 8, 0, 524291, 10, 0, 524292, 8, 0, 524293, 10, 0, 524294, 8, 0, 524295, 10, 0, 524296, 8, 0, 524297, 10, 0, 524298, 8, 0, 524299, 10, 0, 524300, 8, 0, 524301, 10, 0, 524302, 8, 0, 524303, 10, 0 )
-_sections_unfolded = [ "Cell", "Transform" ]
+_sections_unfolded = [ "Cell" ]
 
 [node name="player_box" type="Sprite" parent="." index="1"]
 
@@ -50,30 +46,17 @@ scale = Vector2( 0.65625, 0.65625 )
 texture = ExtResource( 3 )
 _sections_unfolded = [ "Offset" ]
 
-[node name="player_box2" type="Sprite" parent="." index="2"]
+[node name="cactus_right" type="Sprite" parent="." index="2"]
 
-position = Vector2( 199, 82 )
-scale = Vector2( 0.65625, 0.65625 )
-texture = ExtResource( 3 )
-_sections_unfolded = [ "Offset" ]
+position = Vector2( 229, 66 )
+texture = ExtResource( 4 )
 
-[node name="cover" type="Area2D" parent="." index="3"]
+[node name="cactus_left" type="Sprite" parent="." index="3"]
 
-input_pickable = true
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-audio_bus_override = false
-audio_bus_name = "Master"
-script = ExtResource( 4 )
+position = Vector2( 24, 66 )
+texture = ExtResource( 4 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="cover" index="0"]
-
-position = Vector2( 75, 81 )
-shape = SubResource( 1 )
-
-[node name="shoot" type="Area2D" parent="." index="4"]
+[node name="cover" type="Area2D" parent="." index="4"]
 
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
@@ -84,24 +67,39 @@ audio_bus_override = false
 audio_bus_name = "Master"
 script = ExtResource( 5 )
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="cover" index="0"]
+
+position = Vector2( 75, 81 )
+shape = SubResource( 1 )
+
+[node name="shoot" type="Area2D" parent="." index="5"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+script = ExtResource( 6 )
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="shoot" index="0"]
 
-position = Vector2( 93, 82 )
-shape = SubResource( 2 )
+position = Vector2( 91, 81 )
+shape = SubResource( 1 )
 
-[node name="cowboy2" parent="." index="5" instance=ExtResource( 6 )]
+[node name="cowboy" parent="." index="6" instance=ExtResource( 7 )]
 
-position = Vector2( 199.263, 58.1382 )
-can_move = false
-shoot_delay = 0.5
-chance_to_hit = 10
+position = Vector2( 352, 74 )
+shoot_delay = 1
 
-[node name="cowboy" parent="." index="6" instance=ExtResource( 6 )]
+[node name="cowboy2" parent="." index="7" instance=ExtResource( 7 )]
 
-position = Vector2( 288, 74 )
-shoot_delay = 0.5
+position = Vector2( 301, 74 )
+_sections_unfolded = [ "Collision", "Transform" ]
+shoot_delay = 1
 
-[node name="spawn_timer" type="Timer" parent="." index="7"]
+[node name="spawn_timer" type="Timer" parent="." index="8"]
 
 process_mode = 1
 wait_time = 2.0
