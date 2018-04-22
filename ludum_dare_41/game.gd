@@ -25,6 +25,7 @@ func _ready():
 
 	player = $player
 	player.connect("reached_cover", self, "_player_reached_cover")
+	player.connect("hit", self, "_player_hit")
 
 	typer = $typer
 	typer.connect("request_word", self, "_request_word")
@@ -82,3 +83,8 @@ func _invalid_key():
 	words_util_next_multi = pow(score_multiplyer, 2)
 	typer.set_multiplyer(score_multiplyer)
 	$sfx/dec_score_multi.play()
+
+func _player_hit(life):
+	typer.set_life(life)
+	if (life <= 0):
+		print("game over")

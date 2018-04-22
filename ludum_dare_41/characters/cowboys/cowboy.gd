@@ -4,12 +4,14 @@ var dictionary = preload("res://typer/dictionary.gd")
 
 export var points = 10
 export var can_move = true
-
+export var shoot_delay = 2
+export var chance_to_hit = 30
 
 var can_start = false
 var word
 
 var in_shoot = false
+var can_shoot = false
 
 var dead = false
 
@@ -18,6 +20,9 @@ var colision
 func _ready():
 	connect("area_entered", self, "_area_entered")
 	connect("area_exited", self, "_area_exited")
+
+	$shoot_timer.connect("timeout", self, "allow_shooting")
+	$shoot_timer.wait_time = shoot_delay
 
 	add_to_group("bandits")
 	word = dictionary.get_easy_word()
@@ -36,7 +41,10 @@ func _physics_process(delta):
 	if (!can_move):
 		if ($AnimationPlayer.current_animation != "idle_gun"):
 			$AnimationPlayer.play("idle_gun")
-
+		if (can_shoot):
+			shoot()
+		elif ($shoot_timer.time_left <= 0):
+			$shoot_timer.start()
 		return
 
 	if (in_shoot && colision && colision.has_method("is_dead")):
@@ -50,7 +58,10 @@ func _physics_process(delta):
 	else:
 		if ($AnimationPlayer.current_animation != "idle_gun"):
 			$AnimationPlayer.play("idle_gun")
-		shoot()
+		if (can_shoot):
+			shoot()
+		elif ($shoot_timer.time_left <= 0):
+			$shoot_timer.start()
 
 func start():
 	can_start = true
@@ -71,8 +82,17 @@ func get_points():
 	return points
 
 func shoot():
+	can_shoot = false
 	$shoot.play()
 	$AnimationPlayer.play("shoot")
+	get_tree().call_group("player", "shot", self)
+	$shoot_timer.wait_time = shoot_delay
+	$shoot_timer.start()
+
+func allow_shooting():
+	can_shoot = true
 
 func is_dead():
 	return dead
+
+

@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://typer/typer.gd" type="Script" id=1]
 [ext_resource path="res://ui/type_back.png" type="Texture" id=2]
 [ext_resource path="res://fonts/Pixel Cowboy.otf" type="DynamicFontData" id=3]
 [ext_resource path="res://sfx/type.wav" type="AudioStream" id=4]
 [ext_resource path="res://sfx/type_incorrect.wav" type="AudioStream" id=5]
+[ext_resource path="res://ui/life.png" type="Texture" id=6]
 
 [sub_resource type="DynamicFont" id=3]
 
@@ -187,5 +188,26 @@ volume_db = -40.0
 autoplay = false
 mix_target = 0
 bus = "Sfx"
+
+[node name="heart_1" type="Sprite" parent="." index="8"]
+
+position = Vector2( 8.96214, 7.81123 )
+texture = ExtResource( 6 )
+hframes = 2
+_sections_unfolded = [ "Animation" ]
+
+[node name="heart_2" type="Sprite" parent="." index="9"]
+
+position = Vector2( 17.9621, 7.81123 )
+texture = ExtResource( 6 )
+hframes = 2
+_sections_unfolded = [ "Animation" ]
+
+[node name="heart_3" type="Sprite" parent="." index="10"]
+
+position = Vector2( 26.9621, 7.81123 )
+texture = ExtResource( 6 )
+hframes = 2
+_sections_unfolded = [ "Animation" ]
 
 

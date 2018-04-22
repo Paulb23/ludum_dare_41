@@ -71,3 +71,21 @@ func set_points(points):
 
 func set_multiplyer(multiplyer):
 	$multiplyer_text.text = "x"+String(multiplyer)
+
+func set_life(life):
+	if (life == 3):
+		$heart_1.frame = 0
+		$heart_2.frame = 0
+		$heart_3.frame = 0
+	elif (life == 2):
+		$heart_1.frame = 0
+		$heart_2.frame = 0
+		$heart_3.frame = 1
+	elif (life == 1):
+		$heart_1.frame = 0
+		$heart_2.frame = 1
+		$heart_3.frame = 1
+	elif (life == 0):
+		$heart_1.frame = 1
+		$heart_2.frame = 1
+		$heart_3.frame = 1

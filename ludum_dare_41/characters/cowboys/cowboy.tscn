@@ -126,6 +126,8 @@ script = ExtResource( 1 )
 _sections_unfolded = [ "Collision" ]
 points = 10
 can_move = true
+shoot_delay = 2
+chance_to_hit = 30
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 
@@ -184,5 +186,12 @@ volume_db = -30.0
 autoplay = false
 mix_target = 0
 bus = "Sfx"
+
+[node name="shoot_timer" type="Timer" parent="." index="5"]
+
+process_mode = 1
+wait_time = 2.0
+one_shot = false
+autostart = false
 
 
