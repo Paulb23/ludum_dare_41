@@ -20,7 +20,7 @@ func _ready():
 	typing_sound = $typing
 
 func _unhandled_input(event):
-	if (!event.is_pressed() || !event is InputEventKey):
+	if (!event.is_pressed() || !event is InputEventKey || event.scancode == KEY_ESCAPE):
 		return
 
 	var key_pressed = null

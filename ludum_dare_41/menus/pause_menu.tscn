@@ -1,6 +1,6 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=24 format=2]
 
-[ext_resource path="res://menus/main_menu.gd" type="Script" id=1]
+[ext_resource path="res://menus/pause_menu.gd" type="Script" id=1]
 [ext_resource path="res://ui/main_menu_back.png" type="Texture" id=2]
 [ext_resource path="res://fonts/Pixel Cowboy.otf" type="DynamicFontData" id=3]
 [ext_resource path="res://ui/button_pressed.png" type="Texture" id=4]
@@ -18,6 +18,30 @@ use_mipmaps = false
 use_filter = false
 font_data = ExtResource( 3 )
 _sections_unfolded = [ "Font", "Settings" ]
+
+[sub_resource type="Shader" id=12]
+
+code = "shader_type canvas_item;
+
+void fragment() {
+	vec4 curr_color = texture(TEXTURE,UV);
+	bool has_color = (curr_color.r > 0.0 || curr_color.g > 0.0  || curr_color.b > 0.0) && curr_color.a > 0.0;
+	curr_color.a *= abs(sin(TIME*1.0));
+	COLOR = curr_color;
+}"
+
+[sub_resource type="ShaderMaterial" id=13]
+
+render_priority = 0
+shader = SubResource( 12 )
+
+[sub_resource type="DynamicFont" id=11]
+
+size = 18
+use_mipmaps = true
+use_filter = false
+font_data = ExtResource( 3 )
+_sections_unfolded = [ "Font", "Resource", "Settings" ]
 
 [sub_resource type="StyleBoxTexture" id=2]
 
@@ -168,8 +192,9 @@ expand_margin_bottom = 0.0
 modulate_color = Color( 1, 1, 1, 1 )
 draw_center = true
 
-[node name="Control" type="Control"]
+[node name="Control" type="Control" index="0"]
 
+pause_mode = 2
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 1.0
@@ -181,6 +206,7 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 script = ExtResource( 1 )
+_sections_unfolded = [ "Pause" ]
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 
@@ -213,7 +239,32 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "custom_fonts" ]
 
-[node name="menu" type="VBoxContainer" parent="." index="2"]
+[node name="title2" type="Label" parent="." index="2"]
+
+material = SubResource( 13 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 160.0
+margin_top = 43.0
+margin_right = 218.0
+margin_bottom = 68.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 11 )
+text = "PAUSED"
+uppercase = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Material", "custom_fonts" ]
+
+[node name="menu" type="VBoxContainer" parent="." index="3"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -231,7 +282,7 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 alignment = 0
 
-[node name="endless" type="Button" parent="menu" index="0"]
+[node name="continue" type="Button" parent="menu" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -254,12 +305,12 @@ toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
-text = "play"
+text = "continue"
 flat = false
 align = 1
 _sections_unfolded = [ "custom_fonts" ]
 
-[node name="quit" type="Button" parent="menu" index="1"]
+[node name="menu" type="Button" parent="menu" index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -283,12 +334,41 @@ toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
+text = "MENU"
+flat = false
+align = 1
+_sections_unfolded = [ "custom_fonts" ]
+
+[node name="quit" type="Button" parent="menu" index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 28.0
+margin_right = 105.0
+margin_bottom = 38.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+custom_styles/hover = SubResource( 2 )
+custom_styles/pressed = SubResource( 3 )
+custom_styles/normal = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
 text = "QUIT"
 flat = false
 align = 1
 _sections_unfolded = [ "custom_fonts", "custom_styles" ]
 
-[node name="vol" type="VBoxContainer" parent="." index="3"]
+[node name="vol" type="VBoxContainer" parent="." index="4"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -419,7 +499,7 @@ ticks_on_borders = false
 focus_mode = 2
 _sections_unfolded = [ "Margin", "custom_icons", "custom_styles" ]
 
-[node name="misc" type="Label" parent="." index="4"]
+[node name="misc" type="Label" parent="." index="5"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -444,7 +524,7 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "custom_fonts" ]
 
-[node name="sfx" parent="." index="5" instance=ExtResource( 10 )]
+[node name="sfx" parent="." index="6" instance=ExtResource( 10 )]
 
 position = Vector2( 7, 46 )
 
